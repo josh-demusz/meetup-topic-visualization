@@ -1,0 +1,7 @@
+flask
+gensim
+nltk
+pandas
+sklearn
+matplotlib
+seaborn

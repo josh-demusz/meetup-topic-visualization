@@ -1,0 +1,73 @@
+<div style="justify-content: center;">
+    <!-- <mat-list>
+        <mat-list-item> -->
+    <button mat-stroked-button color="accent" (click)="openTextAnalysisDialog()">Click here for more options</button>
+    <!-- </mat-list-item>
+    </mat-list> -->
+</div>
+<div class="row " style="justify-content: center; margin-top: 10px;">
+    <button mat-stroked-button [class.selected-button]="isSentimentSelected()" style="width: 96px; margin-right: 5px;"
+        (click)="showTextMetricsVisualization('sentiment')">Sentiment</button>
+    <button mat-stroked-button [class.selected-button]="isEmotionSelected()" style="width: 96px; margin-right: 5px;"
+        (click)="showTextMetricsVisualization('emotion')">Emotion</button>
+    <button mat-stroked-button [class.selected-button]="isIntentSelected()" style="width: 96px; margin-right: 5px;"
+        (click)="showTextMetricsVisualization('intent')">Intent</button>
+    <button mat-stroked-button [class.selected-button]="isSarcasmSelected()" style="width: 96px; margin-right: 5px;"
+        (click)="showTextMetricsVisualization('sarcasm')">Sarcasm</button>
+    <button mat-stroked-button [class.selected-button]="isAbuseSelected()" style="width: 96px; margin-right: 5px;"
+        (click)="showTextMetricsVisualization('abuse')">Abuse</button>
+</div>
+
+<div *ngIf="userSelection">
+    <div> <b>Based on comments for: </b></div>
+    Meetup {{userSelection.type}}: &nbsp;<div class="badge badge-primary"> {{getSelectedName()}}</div>
+    Location:&nbsp;<div class="badge badge-primary"> {{selectedCity}}</div>
+</div>
+
+<div class="row">
+    <app-pie-chart></app-pie-chart>
+</div>
+<!-- <div *ngIf="showAnalysisOptions" style="display: flex; flex-direction: row; justify-content: flex-start">
+
+    <div style="order: 1" style="margin-right: 5%;">
+        <mat-list>
+            <mat-list-item>
+                <button mat-stroked-button [class.selected-button]="isSentimentSelected()" style="width: 96px;"
+                    (click)="showTextMetricsVisualization('sentiment')">Sentiment</button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-stroked-button [class.selected-button]="isEmotionSelected()" style="width: 96px;"
+                    (click)="showTextMetricsVisualization('emotion')">Emotion</button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-stroked-button [class.selected-button]="isIntentSelected()" style="width: 96px;"
+                    (click)="showTextMetricsVisualization('intent')">Intent</button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-stroked-button [class.selected-button]="isSarcasmSelected()" style="width: 96px;"
+                    (click)="showTextMetricsVisualization('sarcasm')">Sarcasm</button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-stroked-button [class.selected-button]="isAbuseSelected()" style="width: 96px;"
+                    (click)="showTextMetricsVisualization('abuse')">Abuse</button>
+            </mat-list-item>
+        </mat-list>
+    </div>
+
+    <div style="order: 2;" style="margin-right: 5%;">
+        <app-pie-chart></app-pie-chart>
+    </div>
+
+    <div style="order: 3" *ngIf="textMetricSelected()">
+        <mat-list>
+
+            <mat-divider></mat-divider>
+            <mat-list-item style="font-weight: bold"> Based on comments for: </mat-list-item>
+            <mat-list-item> Meetup {{userSelection.type}}: {{getSelectedName()}} </mat-list-item>
+            <mat-list-item> Location: {{selectedCity}} </mat-list-item>
+            <mat-divider></mat-divider>
+        </mat-list>
+
+    </div>
+
+</div> -->

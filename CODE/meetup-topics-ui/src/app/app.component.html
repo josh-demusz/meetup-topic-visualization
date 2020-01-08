@@ -1,0 +1,140 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <span style="margin-left: 5%">Meetup Topic Analysis</span>
+  <div class="spacer"></div>
+</div>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<div style="margin-top: 20px" class="container">
+  <div class="row">
+    <div class="col">
+      <mat-form-field>
+        <mat-label>Select city</mat-label>
+        <mat-select matNativeControl [(value)]="selectedCity">
+          <mat-option *ngFor="let city of cities" [value]="city.value">
+            {{city.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- </div> -->
+      <!-- <div class="col"> -->
+      <mat-form-field>
+        <mat-label>Select category</mat-label>
+        <mat-select matNativeControl [(value)]="selectedCategory">
+          <mat-option *ngFor="let category of meetupService.categories" [value]="category.value">
+            {{category.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-button color="primary" (click)="displayResult()">
+        Show Result
+        <!-- <mat-icon mat-button svgIcon="assessment"></mat-icon> -->
+      </button>
+    </div>
+  </div>
+  <!-- <div class="row" style="text-align: center; margin-bottom: 10px">
+    <mat-chip-list style="margin: 0 auto" aria-label="Fish selection">
+      <mat-chip *ngIf="selectedCity">City: {{selectedCity}}</mat-chip> >
+      <mat-chip *ngIf="selectedCategory">Category: {{selectedCategory}}</mat-chip> >
+      <mat-chip *ngIf="selectedCity">Category: {{selectedCategory}}</mat-chip> >
+    </mat-chip-list>
+  </div> -->
+
+  <p-tabView (onChange)="displayResult($event)">
+    <p-tabPanel style="width: 100%" header="Topic Distribution">
+      <div class="row">
+        <div id="pie-chart-card" class="col-12">
+          <p-card header="Topics Distribution" [style]="{'text-align': 'center','width':'100%', 'min-height': '50vh'}">
+            <div>Explore topic distribution and popular topics</div>
+            <app-visualization style="width: 100%; height: 100%; margin-left: 5%; margin-top: 5%;"> </app-visualization>
+          </p-card>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Comment Analysis">
+      <div id="pie-chart-card" class="col-12">
+        <p-card header="Comment Analysis" [style]="{'text-align': 'center' , 'min-height': '40vh'}">
+          <div>Analyze Meetup.com comments for sentiment, emotion and intent regarding topics
+          </div>
+          <app-text-analysis style="min-height: 500px;"></app-text-analysis>
+        </p-card>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+
+  <!-- <div class="row">
+    <div class="col">
+      <p-card header="Topics Distribution" [style]="{'text-align': 'center','width':'100%', 'min-height': '50vh'}">
+        <div>Explore topic distribution and popular topics</div>
+        <app-visualization style="width: 100%; height: 100%; margin-left: 5%; margin-top: 5%;"> </app-visualization>
+      </p-card>
+    </div>
+    <div id="pie-chart-card" class="col">
+      <p-card header="Comment Analysis" [style]="{'text-align': 'center' , 'min-height': '40vh'}">
+        <div>Analyze Meetup.com comments for sentiment, emotion and intent regarding topics
+        </div>
+        <app-text-analysis style="min-height: 500px;"></app-text-analysis>
+      </p-card>
+    </div>
+  </div> -->
+</div>
+
+<!-- <div class="content" role="main" class="grid">
+
+  <div class="flex-row">
+
+    <div class="flex-col" style="order: 1; margin: 5%">
+      <div style="order: 1">
+        <mat-form-field>
+          <mat-label>Select city</mat-label>
+          <mat-select matNativeControl [(value)]="selectedCity">
+            <mat-option *ngFor="let city of meetupService.cities" [value]="city.value">
+              {{city.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div style="order: 2">
+        <mat-form-field>
+          <mat-label>Select category</mat-label>
+          <mat-select matNativeControl [(value)]="selectedCategory">
+            <mat-option *ngFor="let category of meetupService.categories" [value]="category.value">
+              {{category.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div style="order: 3">
+        <mat-list style="justify-content: left;">
+          <mat-list-item>General</mat-list-item>
+          <mat-list-item>
+            <button mat-icon-button color="primary" (click)="displayGeneralBarChart()">
+              <mat-icon mat-button svgIcon="assessment"></mat-icon>
+            </button>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Saturation</mat-list-item>
+          <mat-list-item>
+            <button mat-icon-button color="primary" (click)="displaySaturationBarChart()">
+              <mat-icon mat-button svgIcon="assessment"></mat-icon>
+            </button>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Comment Analysis</mat-list-item>
+          <mat-list-item>
+            <button mat-icon-button color="primary" (click)="displayTextAnalysis()">
+              <mat-icon mat-button svgIcon="comment"></mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </div>
+
+
+    <div style="order: 2; flex-grow: 6">
+      <app-visualization style="width: 100%; height: 100%; margin-left: 5%; margin-top: 5%;"> </app-visualization>
+    </div>
+  </div>
+
+</div>
+
+<router-outlet></router-outlet> -->

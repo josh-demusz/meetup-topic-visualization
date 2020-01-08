@@ -1,0 +1,72 @@
+<!-- <p>Enter selection: </p> -->
+
+<h1 mat-dialog-title>Enter selection:</h1>
+<div mat-dialog-content  style="display: flex; flex-direction: column;">
+
+    <mat-form-field style="flex-direction: row">
+        <mat-label>Level</mat-label>
+        <mat-select [(ngModel)]="data.type">
+            <mat-option value="Category">Category</mat-option>
+            <mat-option value="Cluster">Cluster</mat-option>
+            <mat-option value="Group">Group</mat-option>
+            <mat-option value="Event">Event</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-list *ngIf="data.type == 'Category'" style="flex-direction: row">
+        <mat-list-item>
+            Selected Category:
+        </mat-list-item>
+        <mat-list-item>
+            {{data.categoryName}}
+        </mat-list-item>
+    </mat-list>
+
+    <div *ngIf="data.type == 'Cluster'" style="flex-direction: row">
+        <mat-form-field>
+            <mat-label>Select cluster</mat-label>
+            <mat-select matNativeControl [(value)]="data.clusterName">
+                <mat-option *ngFor="let cluster of clusters" [value]="cluster">
+                    {{cluster}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <mat-form-field class="example-full-width" *ngIf="data.type == 'Group'" style="flex-direction: row;">
+        <input matInput placeholder="Group name" [(ngModel)]="data.groupSearch" (keyup.enter)="getGroups()">
+        <mat-hint>Press 'enter' to search</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" *ngIf="data.type == 'Event'" style="flex-direction: row;">
+        <input matInput placeholder="Event name" [(ngModel)]="data.eventSearch" (keyup.enter)="getEvents()">
+        <mat-hint>Press 'enter' to search</mat-hint>
+    </mat-form-field>
+
+    <div *ngIf="eventsLoaded()" style="flex-direction: row; margin-top: 5%;">
+        <mat-form-field style="min-width: 500px">
+            <mat-label style="min-width: 500px">Select event</mat-label>
+            <mat-select matNativeControl [(value)]="data.eventName" style="min-width: 500px">
+                <mat-option *ngFor="let event of events" [value]="event">
+                    {{event}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div *ngIf="groupsLoaded()" style="flex-direction: row; margin-top: 5%;">
+            <mat-form-field style="min-width: 500px">
+                <mat-label style="min-width: 500px">Select group</mat-label>
+                <mat-select matNativeControl [(value)]="data.groupName" style="min-width: 500px">
+                    <mat-option *ngFor="let group of groups" [value]="group">
+                        {{group}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Close</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial [disabled]="!isValidSelection()">Ok</button>
+</div>
